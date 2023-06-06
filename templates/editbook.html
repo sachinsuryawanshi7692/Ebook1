@@ -1,0 +1,88 @@
+{% extends 'base1.html' %}
+
+{% block 'main' %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 my-5 mx-auto">
+        {% for x in products %}     
+            <form method="POST" action="">
+                {% csrf_token %}
+              <div class="mb-3">
+                  <label for="pid" class="form-label"><strong>Book Name:</strong></label>
+                  <input type="text" class="form-control" value="{{x.name}}" name="pname" id="pid" placeholder="Add the Book Name">
+                </div>
+                
+                <div class="mb-3">
+                  <label><strong>Select Category:</strong></label>
+                  <select class="form-select" name="pcat" aria-label="Default select example">
+                    {% if x.cat == 1 %}
+                    <option value="1">Historical</option>
+                    {% elif x.cat == 2 %}
+                    <option value="2">Biography</option>
+                    {% elif x.cat == 3 %}
+                    <option value="3">Cook</option>
+                    {% else %}
+                    <option value="4">Peotry</option>
+                    {% endif %}
+                    <option value="1">Historical</option>
+                    <option value="2">Biography</option>
+                    <option value="3">Cook</option>
+                    <option value="4">Peotry</option>
+                   </select>
+                </div>
+                  
+                  <div class="mb-3">
+                      <label for="priceid" class="form-label"><strong>Book Price:</strong></label>
+                      <input type="number" class="form-control" value="{{x.price}}" name="pprice" id="priceid" placeholder="Enter the Price ">
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="dateid" class="form-label"><strong>Book Date:</strong></label>
+                      <input type="date" class="form-control" value="{{x.date}}" name="bdate" id="dateid" placeholder="Enter the data ">
+                    </div>
+
+                  <div class="mb-3">
+                      <label for=""><strong> Book Status:</strong></label>
+                    {% if x.status == 1 %}  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="1" id="redio1" checked>
+                          <label class="form-check-label" for="redio1">
+                            active
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="0" id="redio2">
+                          <label class="form-check-label" for="redio2">
+                            Inactive
+                          </label>
+                        </div>
+
+                        {% else %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="1" id="redio1">
+                            <label class="form-check-label" for="redio1">
+                              active
+                            </label>
+                          </div>
+  
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="0" id="redio2" checked>
+                            <label class="form-check-label" for="redio2">
+                              Inactive
+                            </label>
+                          </div>
+                        {% endif %}
+                        <div class="mb-3 my-3">
+                          <button type="submit" class=" btn btn-success">Update</button>
+                        </div>
+                  </div>  
+           </form>
+        {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock 'main' %}

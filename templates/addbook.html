@@ -1,0 +1,103 @@
+{% extends 'base1.html' %}
+
+{% block 'main' %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-5">
+             <h3 class="bg-primary text-white text-center">Add Book Management System</h3>
+
+             <form method="POST" action="/editbook/{{x.id}}">
+                  {% csrf_token %}
+                <div class="mb-3">
+                    <label for="pid" class="form-label"><strong>Book Name:</strong></label>
+                    <input type="text" class="form-control" name="pname" id="pid" placeholder="Add the Book Name">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label><strong>Select Category:</strong></label>
+                    <select class="form-select" name="pcat" aria-label="Default select example">
+                        <option selected>Book Category</option>
+                        <option value="1">Historical</option>
+                        <option value="2">Biography</option>
+                        <option value="3">Cook</option>
+                        <option value="4">Peotry</option>
+                      </select>
+                  </div>
+                    
+                    <div class="mb-3">
+                        <label for="priceid" class="form-label"><strong>Book Price:</strong></label>
+                        <input type="number" class="form-control" name="pprice" id="priceid" placeholder="Enter the Price ">
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label for="dateid" class="form-label"><strong>Book Date:</strong></label>
+                        <input type="date" class="form-control" name="bdate" id="dateid" placeholder="Enter the data ">
+                      </div>
+
+                    <div class="mb-3">
+                        <label for=""><strong> Book Status:</strong></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="1" id="redio1" checked>
+                            <label class="form-check-label" for="redio1">
+                              active
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="0" id="redio2">
+                            <label class="form-check-label" for="redio2">
+                              Inactive
+                            </label>
+                          </div>
+                          <div class="mb-3 my-3">
+                            <button type="submit" class=" btn btn-danger">Add Book</button>
+                          </div>
+                    </div>  
+             </form>
+        </div>
+        <div class="col-md-8 mt-5">
+              <H3 class="bg-primary text-white text-center">View Book Management System</H3>
+              <table class="table table-hover">
+                <tr>
+                   <th>Book Name</th>
+                   <th>Category</th>
+                   <th>Price</th>
+                   <th>Date</th>
+                   <th>Status</th>
+                   <th>Edit</th>
+                   <th>Delete</th>
+                </tr>
+              {% for x in products %}
+              <tr>
+                 <td>{{x.name}}</td>
+                 
+                 {% if x.cat == 1 %}
+                 <td>Historical</td>
+                 {% elif x.cat == 2 %}
+                 <td>Biography</td>
+                 {% elif x.cat == 3 %}
+                 <td>Cook</td>
+                 {% else %}
+                 <td>Peotry</td>
+                 {% endif %}
+                 
+                 <td>{{x.price}}</td>
+                 <td>{{x.date}}</td>
+                 {% if x.status == 1 %}
+                 <td class="text-success"><strong>Available</strong></td>
+                 {% else %}
+                 <td class="text-danger"><strong>Unavailable</strong></td>
+                 {% endif %}
+
+                 <td><a href="/editbook/{{x.id}}"><button class="btn btn-warning">Edit</button></a></td>
+                 <td><a href="/delbook/{{x.id}}"><button class="btn btn-danger">Delete</button></a></td>
+              </tr>
+              {% endfor %}
+
+              </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock 'main' %}

@@ -1,0 +1,41 @@
+{% extends 'base1.html' %}
+
+{% block 'main' %}
+
+<div class="row">
+{% for x in products %}
+    <div class="col-md-6 mt-5">
+        <img src="{{x.eimage.url}}"  alt="" width="400px" height="500px">
+    </div>
+
+    <div class="col-md-6 mt-5">
+        <h3><em>Book Name:</em></h3>{{x.name}} <br><br>
+            {% if x.cat == 1 %}
+               <h3><em>Book Category:</em></h3>Historical <br><br>
+            {% elif x.cat == 2 %}
+               <h3><em>Book Category:</em></h3>Biography <br><br>
+            {% elif x.cat == 3 %}
+               <h3><em>Book Category:</em></h3>Cook <br><br>
+            {% else %}
+               <h3><em>Book Category:</em></h3>Peotry <br><br>   
+
+        {% endif %} 
+            
+        <h3><em>Book Price:</em></h3>{{x.price}} <br><br>
+
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12z"/>
+          </svg>
+          <h6 class="btn btn-danger mt-2">Play</h6>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+          </svg>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock 'main' %}
+
+
+

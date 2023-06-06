@@ -1,0 +1,27 @@
+{%extends 'base1.html' %}
+
+{% block 'main' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 my-5 mx-auto">
+            <form method="POST" action="/logout">
+            <div class="mb-3">
+                <label for="one" class="form-label"><strong>User Email:</strong></label>
+                <input type="email" class="form-control" id="one" placeholder="Enter the Email-Id">
+              </div>
+            
+              <div class="mb-3">
+                <label for="two" class="form-label"><strong>User Password:</strong></label>
+                <input type="password" class="form-control" id="two" placeholder="Enter the Password">
+              </div>
+            
+              <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-danger"><strong>Logout</strong></button>
+              </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock 'main' %}
